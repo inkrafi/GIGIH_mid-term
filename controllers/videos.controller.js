@@ -1,4 +1,5 @@
 const Video = require('../models/videos.model.js')
+const Product = require('../models/products.model.js')
 const Comments = require('../models/comments.model.js')
 
 // Video
@@ -16,6 +17,16 @@ async function postVideo(req, res) {
         const video = await Video.create(req.body)
         await video.save()
         res.status(201).json(video)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// Products
+async function getProducts(_, res) {
+    try {
+        const product = await Product.find()
+        return res.status(200).json(product)
     } catch (error) {
         res.status(500).json(error)
     }
@@ -55,9 +66,9 @@ async function postComment(req, res) {
         }
 
         // Cek comment harus pada videoId yang ada di comments.model
-        const existingComment = await Comments.findOne({videoId});
+        const existingComment = await Comments.find({videoId});
         if (!existingComment) {
-            return res.status(404).json({ message: "VideoId not found." });
+            return res.status(404).json({ message: "Video not found." });
         }
 
         // Buat comment baru menggunakan comments.model
@@ -71,12 +82,12 @@ async function postComment(req, res) {
         // Save ke database
         const savedComment = await newComment.save()
         if (!savedComment) {
-            return res.status(500).json({ message: "Failed to save the comment." });
+            return res.status(500).json({ message: "Failed to send the comment." });
         }
-        res.status(201).json({ message: "Comment created successfully.", comment: savedComment });
+        res.status(201).json({ message: "Comment sent successfully.", comment: savedComment });
     } catch (error) {
         res.status(500).json(error);
     }
 }
 
-module.exports = {getVideos, postVideo, getProductsFromVideo, getComments, postComment}
+module.exports = {getVideos, postVideo, getProducts, getProductsFromVideo, getComments, postComment}
