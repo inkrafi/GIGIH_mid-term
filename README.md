@@ -1,7 +1,7 @@
 # gigih_mid-term
 Mid-Term Project - Fullstack Engineering - Generasi GIGIH 3.0
 ## List API Request and Response
-A list of API requests and responses can be found on my [Gihub Gist](https://gist.github.com/inkrafi/3f370517349c86777c83dff131a85e0f)
+A list of API requests and responses can be found on my [Gihub Gist](https://gist.github.com/inkrafi/3f370517349c86777c83dff131a85e0f).
 ## How to Run the Application
 1. Clone this repository.
 
