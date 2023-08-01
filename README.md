@@ -1,5 +1,11 @@
 # gigih_mid-term
 Mid-Term Project - Fullstack Engineering - Generasi GIGIH 3.0
+## Database Structure
+![db_structure](img/dbs_mid-term.png)
+## API Structure
+There are 2 routes in this project
+- /videos
+- /products
 ## List API Request and Response
 A list of API requests and responses can be found on my [Gihub Gist](https://gist.github.com/inkrafi/3f370517349c86777c83dff131a85e0f).
 ## How to Run the Application
