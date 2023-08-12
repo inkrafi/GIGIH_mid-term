@@ -12,6 +12,20 @@ async function getVideos(_, res) {
     }
 }
 
+async function getVideo(req, res) {
+    try {
+        const { id } = req.params;
+        const video = await Video.findById(id);
+
+        if(!video) {
+            return res.status(404).json({ message: "Video not found" });
+        }
+        res.status(200).json(video);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 async function postVideo(req, res) {
     try {
         const video = await Video.create(req.body)
@@ -19,6 +33,36 @@ async function postVideo(req, res) {
         res.status(201).json(video)
     } catch (error) {
         res.status(500).json(error)
+    }
+}
+
+async function patchVideo(req, res) {
+    try {
+        const { id } = req.params;
+        const updatedVideo = await Video.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedVideo) {
+            return res.status(404).json({ message: "Video not found" });
+        }
+
+        res.status(200).json({ message: "Video updated successfully" });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+async function deleteVideo(req, res) {
+    try {
+        const { id } = req.params;
+        const deletedVideo = await Video.findByIdAndDelete(id);
+
+        if (!deletedVideo) {
+            return res.status(404).json({ message: "Video not found" });
+        }
+
+        res.status(200).json({ message: "Video deleted successfully" });
+    } catch (error) {
+        res.status(500).json(error);
     }
 }
 
@@ -90,4 +134,8 @@ async function postComment(req, res) {
     }
 }
 
-module.exports = {getVideos, postVideo, getProducts, getProductsFromVideo, getComments, postComment}
+module.exports = {
+    getVideos, getVideo, postVideo, patchVideo, deleteVideo,
+    getProducts, getProductsFromVideo, 
+    getComments, postComment
+}

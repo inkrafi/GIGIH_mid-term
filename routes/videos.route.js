@@ -4,7 +4,10 @@ const videoController = require('../controllers/videos.controller.js')
 
 // videos
 router.get('/', videoController.getVideos)
+router.get('/:id', videoController.getVideo)
 router.post('/', videoController.postVideo)
+router.patch("/:id", videoController.patchVideo);
+router.delete("/:id", videoController.deleteVideo);
 
 // products
 router.get('/products', videoController.getProducts)
