@@ -10,7 +10,6 @@ router.patch("/:id", videoController.patchVideo);
 router.delete("/:id", videoController.deleteVideo);
 
 // products
-router.get('/products', videoController.getProducts)
 router.get('/product/:id', videoController.getProductsFromVideo)
 
 // comments

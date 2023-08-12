@@ -66,16 +66,6 @@ async function deleteVideo(req, res) {
     }
 }
 
-// Products
-async function getProducts(_, res) {
-    try {
-        const product = await Product.find()
-        return res.status(200).json(product)
-    } catch (error) {
-        res.status(500).json(error)
-    }
-}
-
 // Products from Video
 const getProductsFromVideo = async (req, res) => {
     const { id } = req.params;
@@ -136,6 +126,6 @@ async function postComment(req, res) {
 
 module.exports = {
     getVideos, getVideo, postVideo, patchVideo, deleteVideo,
-    getProducts, getProductsFromVideo, 
+    getProductsFromVideo, 
     getComments, postComment
 }

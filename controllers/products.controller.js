@@ -1,5 +1,15 @@
 const Product = require('../models/products.model.js')
 
+// Products
+async function getProducts(_, res) {
+    try {
+        const product = await Product.find()
+        return res.status(200).json(product)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
 async function postProduct(req, res) {
     try {
         const product = await Product.create(req.body)
@@ -41,4 +51,4 @@ async function deleteProduct(req, res) {
     }
 }
 
-module.exports = {postProduct, updateProduct, deleteProduct}
+module.exports = {getProducts, postProduct, updateProduct, deleteProduct}
