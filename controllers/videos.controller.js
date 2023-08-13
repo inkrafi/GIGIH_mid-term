@@ -1,5 +1,4 @@
 const Video = require('../models/videos.model.js')
-const Product = require('../models/products.model.js')
 const Comments = require('../models/comments.model.js')
 
 // Video
@@ -81,12 +80,13 @@ const getProductsFromVideo = async (req, res) => {
 };
 
 // Comments
-async function getComments(_, res) {
+async function getCommentsByVideoId(req, res) {
     try {
-        const comments = await Comments.find()
-        res.status(200).json(comments)
+        const videoId = req.params.videoId; // Extract the video ID from the URL
+        const comments = await Comments.find({ videoId: videoId }); // Filter comments by videoId
+        res.status(200).json(comments);
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 }
 
@@ -127,5 +127,5 @@ async function postComment(req, res) {
 module.exports = {
     getVideos, getVideo, postVideo, patchVideo, deleteVideo,
     getProductsFromVideo, 
-    getComments, postComment
+    getCommentsByVideoId, postComment
 }

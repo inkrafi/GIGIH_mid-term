@@ -13,7 +13,7 @@ router.delete("/:id", videoController.deleteVideo);
 router.get('/product/:id', videoController.getProductsFromVideo)
 
 // comments
-router.get('/comments', videoController.getComments)
+router.get("/:videoId/comments", videoController.getCommentsByVideoId);
 router.post('/comment', videoController.postComment)
 
 module.exports = router
