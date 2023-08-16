@@ -23,7 +23,8 @@ db.once ("connected", () => {
 const app = express()
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://signore-project.vercel.app/']
+    
 }))
 
 app.use(express.json())
