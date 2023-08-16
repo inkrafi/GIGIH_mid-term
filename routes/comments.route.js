@@ -3,6 +3,6 @@ const router = express.Router()
 const commentController = require('../controllers/comments.controller.js')
 
 router.get('/', commentController.getComments)
-router.delete('/:id', commentController.getComments)
+router.delete('/:id', commentController.deleteComment)
 
 module.exports = router
